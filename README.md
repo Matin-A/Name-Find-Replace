@@ -15,4 +15,5 @@ Here is a simple example: I enter "example" as the keyword, "" (empty) as the re
 
 ## How to use Regex Keyword
 Regex (Regular Expressions) is a word (sequence of characters) which is a pattern to more than one word.
+
 Regex Keyword must follow Java Regex Rules. [Here](https://docs.google.com/document/d/1CDhy9E-SLz_CeW5VSJ-uM63UPCEj2O3hQUsicKNE178/edit?usp=sharing) is a short summary of rules.
