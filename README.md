@@ -1,6 +1,11 @@
 # Name Find & Replace Purpose
 When you have directory with large number of files and there is a word (or regex) that all names contains, now you want to remove it or replace it with another word, Here this program can help you.
 
+# Features
+* Replace file names keyword with replacement keyword.
+* Delete file names keyword (in case you leave replacement keyword empty).
+* Rollback any changes after each rename operation.
+
 # Requirments
 * [Java Runtime Environment Version 10.0.1](http://www.oracle.com/technetwork/java/javase/downloads/jre10-downloads-4417026.html) is needed to run JAR file or run it manually.
 Other versions not tested so not recommended.
