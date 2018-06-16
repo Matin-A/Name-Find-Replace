@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="500.0" maxWidth="630.0" minHeight="350.0" minWidth="520.0" prefHeight="350.0" prefWidth="520.0" snapToPixel="false" style="-fx-border-color: #afafaf;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+    <GridPane maxHeight="500.0" maxWidth="630.0" minHeight="350.0" minWidth="520.0" prefHeight="350.0" prefWidth="520.0" snapToPixel="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="97.0" minHeight="97.0" prefHeight="97.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="106.0" minHeight="106.0" prefHeight="106.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="140.0" prefHeight="140.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <Button fx:id="info" alignment="CENTER" maxHeight="23.0" maxWidth="23.0" minHeight="23.0" minWidth="23.0" mnemonicParsing="false" onMouseClicked="#infoClose" onMouseEntered="#infoHovered" onMouseExited="#infoUnHovered" onMousePressed="#infoPressed" onMouseReleased="#infoReleased" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: linear-gradient(#d1e2ff, #adcbff); -fx-background-insets: 4; -fx-background-radius: 30; -fx-text-fill: White;" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <GridPane.margin>
+                <Insets left="7.0" top="5.0" />
+            </GridPane.margin>
+        </Button>
+        <Button fx:id="minimize" alignment="CENTER" maxHeight="23.0" maxWidth="23.0" minHeight="23.0" minWidth="23.0" mnemonicParsing="false" onMouseClicked="#minimClicked" onMouseEntered="#minimHovered" onMouseExited="#minimUnHovered" onMousePressed="#minimPressed" onMouseReleased="#minimReleased" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: linear-gradient(#c9edcf, #a7e5b2); -fx-background-insets: 4; -fx-background-radius: 30; -fx-text-fill: White;" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <GridPane.margin>
+                <Insets right="29.0" top="5.0" />
+            </GridPane.margin>
+        </Button>
+        <Button fx:id="exit" alignment="CENTER" maxHeight="23.0" maxWidth="23.0" minHeight="23.0" minWidth="23.0" mnemonicParsing="false" onMouseClicked="#exitClicked" onMouseEntered="#exitHovered" onMouseExited="#exitUnHovered" onMousePressed="#exitPressed" onMouseReleased="#exitReleased" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: linear-gradient(#e8c7c7,#e5a7a7); -fx-background-insets: 4; -fx-background-radius: 30; -fx-text-fill: White;" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <GridPane.margin>
+                <Insets right="7.0" top="5.0" />
+            </GridPane.margin>
+        </Button>
+        <Label alignment="CENTER" maxHeight="64.0" maxWidth="292.0" minHeight="64.0" minWidth="292.0" prefHeight="64.0" prefWidth="292.0" style="&#10;" text="Name Find &amp; Replace" textAlignment="CENTER" textFill="#9f9f9f" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+            <font>
+                <Font size="20.0" />
+            </font>
+            <GridPane.margin>
+                <Insets left="80.0" top="17.0" />
+            </GridPane.margin>
+        </Label>
+        <ImageView fitHeight="46.0" fitWidth="46.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <GridPane.margin>
+                <Insets right="170.0" />
+            </GridPane.margin>
+            <Image url="@../resources/rename.png" />
+        </ImageView>
+        <Label text="Developed By Matin Afkhami" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets top="40.0" />
+            </GridPane.margin>
+            <font>
+                <Font name="Papyrus" size="18.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#telegramClicked" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <GridPane.margin>
+                <Insets left="150.0" />
+            </GridPane.margin>
+            <Image url="@../resources/telegram.png" />
+        </ImageView>
+        <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#googlePlusClicked" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <GridPane.margin>
+                <Insets right="150.0" />
+            </GridPane.margin>
+            <Image url="@../resources/googleplus.png" />
+        </ImageView>
+        <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#githubClicked" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <GridPane.margin>
+                <Insets />
+            </GridPane.margin>
+            <Image url="@../resources/github.png" />
+        </ImageView>
+      <Label text="v1.0.0" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets bottom="-10.0" />
+         </GridPane.margin>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+    </GridPane>
+</AnchorPane>
