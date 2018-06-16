@@ -2,7 +2,7 @@
 When you have directory with large number of files and there is a word (or regex) that all names contains, now you want to remove it or replace it with another word, Here this program can help you.
 
 # Features
-* JavaFX Aplication runs via JAR file
+* JavaFX Aplication runs via whether JAR file or CLASS file
 * Replace file names keyword with replacement keyword.
 * Delete file names keyword (in case you leave replacement keyword empty).
 * Rollback any changes after each rename operation.
