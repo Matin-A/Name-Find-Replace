@@ -2,6 +2,7 @@
 When you have directory with large number of files and there is a word (or regex) that all names contains, now you want to remove it or replace it with another word, Here this program can help you.
 
 # Features
+* JavaFX Aplication runs via JAR file
 * Replace file names keyword with replacement keyword.
 * Delete file names keyword (in case you leave replacement keyword empty).
 * Rollback any changes after each rename operation.
@@ -10,6 +11,7 @@ When you have directory with large number of files and there is a word (or regex
 * [Java Runtime Environment Version 10.0.1](http://www.oracle.com/technetwork/java/javase/downloads/jre10-downloads-4417026.html) is needed to run JAR file or run it manually.
 Other versions not tested so not recommended.
 * I tried to write a cross-platform application so there should be no problem on java supported os's. But i only tested in Windows 10 1803.
+
 # How to's
 
 ## How to use program
