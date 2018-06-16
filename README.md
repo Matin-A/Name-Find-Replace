@@ -10,7 +10,7 @@ Other versions not tested so not recommended.
 ## How to use program
 Here is a simple example: I enter "example" as the keyword, "" (empty) as the replacement keyword, and "PATH/Directory" as the path, then run the program:
 
-
+![Example](https://github.com/Matin-A/Name-Find-Replace/blob/master/Assests/Example.jpg)
 
 
 ## How to use Regex Keyword
