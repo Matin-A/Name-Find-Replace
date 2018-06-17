@@ -14,7 +14,10 @@ Other versions not tested so not recommended.
 
 # How to's
 
-## How to use program
+## How to run the program
+Simply copy and run `File Find & Replace.jar` File. You need JRE pre installed.
+
+## How to use the program
 Here is a simple example: I enter "example" as the keyword, "" (empty) as the replacement keyword, and "PATH/Directory" as the path, then run the program:
 
 ![Example](https://github.com/Matin-A/Name-Find-Replace/blob/master/Assests/Example.jpg)
