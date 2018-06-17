@@ -28,5 +28,5 @@ Regex (Regular Expressions) is a word (sequence of characters) which is a patter
 
 Regex Keyword must follow Java Regex Rules. [Here](https://docs.google.com/document/d/1CDhy9E-SLz_CeW5VSJ-uM63UPCEj2O3hQUsicKNE178/edit?usp=sharing) is a short summary of rules.
 
-## Screenshot
+# Screenshot
 ![screenshot](https://github.com/Matin-A/Name-Find-Replace/blob/master/Assests/NameFindReplaceScreenshot.jpg)
