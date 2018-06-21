@@ -31,9 +31,91 @@
                 <Insets left="80.0" top="17.0" />
             </GridPane.margin>
         </Label>
+        <ImageView fitHeight="46.0" fitWidth="46.0" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+            <GridPane.margin>
+                <Insets right="170.0" top="25.5" />
+            </GridPane.margin>
+            <Image url="@../resources/rename.png" />
+        </ImageView>
+        <GridPane prefWidth="529.0" GridPane.rowIndex="1">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" />
+                <ColumnConstraints hgrow="SOMETIMES" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <Label text="Target Keyword" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                <GridPane.margin>
+                    <Insets top="17.0" />
+                </GridPane.margin>
+                <padding>
+                    <Insets left="35.0" />
+                </padding>
+         </Label>
+            <TextField fx:id="keywordTextField" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" promptText="Can not be empty" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                <GridPane.margin>
+                    <Insets left="35.0" top="42.0" />
+                </GridPane.margin>
+        </TextField>
+            <Button alignment="CENTER" focusTraversable="false" maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" mnemonicParsing="false" onMouseClicked="#invertClicked" prefHeight="15.0" prefWidth="15.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                <GridPane.margin>
+                    <Insets top="48.0" />
+                </GridPane.margin>
+            </Button>
+            <Label text="Replacement Keyword" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                <GridPane.margin>
+                    <Insets top="17.0" />
+                </GridPane.margin>
+                <padding>
+                    <Insets right="40.0" />
+                </padding>
+         </Label>
+            <TextField fx:id="repKeywordTextField" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" promptText="Leave it empty to delete the keyword" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                <GridPane.margin>
+                    <Insets right="35.0" top="42.0" />
+                </GridPane.margin>
+        </TextField>
+         <RadioButton fx:id="exactKeyword" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#exactKeywordClicked" selected="true" text="Exact Keyword" GridPane.valignment="TOP">
+            <GridPane.margin>
+               <Insets left="40.0" top="80.0" />
+            </GridPane.margin>
+         </RadioButton>
+         <RadioButton fx:id="regexKeyword" mnemonicParsing="false" onMouseClicked="#regexKeywordClicked" text="Regex Keyword" GridPane.valignment="TOP">
+            <GridPane.margin>
+               <Insets left="40.0" top="105.0" />
+            </GridPane.margin>
+         </RadioButton>
+        </GridPane>
+         <Label text="Path" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets top="-25.0" />
+         </GridPane.margin>
+      </Label>
+         <TextField fx:id="pathTextField" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" promptText="Can not be empty" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets left="35.0" right="120.0" />
+         </GridPane.margin>
+      </TextField>
+      <Button focusTraversable="false" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseClicked="#fileChooserClicked" opacity="0.78" prefHeight="25.0" prefWidth="25.0" text="..." GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets right="90.0" />
+         </GridPane.margin>
+      </Button>
+      <Button focusTraversable="false" maxHeight="25.0" maxWidth="50.0" minHeight="25.0" minWidth="50.0" mnemonicParsing="false" onMouseClicked="#openClicked" prefHeight="25.0" prefWidth="50.0" text="Open" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets right="35.0" />
+         </GridPane.margin>
+      </Button>
         <Button fx:id="start" defaultButton="true" maxHeight="36.0" maxWidth="117.0" minHeight="36.0" minWidth="117.0" mnemonicParsing="false" onMouseClicked="#startClicked" prefHeight="36.0" prefWidth="117.0" text="Start" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
             <GridPane.margin>
                 <Insets bottom="20.0" left="35.0" />
+            </GridPane.margin>
+        </Button>
+        <Button fx:id="rollback" disable="true" maxHeight="36.0" maxWidth="80.0" minHeight="36.0" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#rollbackClicked" prefHeight="36.0" prefWidth="80.0" text="Rollback" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <GridPane.margin>
+                <Insets bottom="20.0" left="165.0" />
             </GridPane.margin>
         </Button>
         <Label fx:id="textMessage" alignment="CENTER_RIGHT" maxWidth="213.0" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
@@ -44,13 +126,7 @@
             <Font size="11.0" />
          </font>
         </Label>
-        <ImageView fitHeight="46.0" fitWidth="46.0" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-            <GridPane.margin>
-                <Insets right="170.0" top="25.5" />
-            </GridPane.margin>
-            <Image url="@../resources/rename.png" />
-        </ImageView>
-        <Button fx:id="exit" alignment="CENTER" maxHeight="23.0" maxWidth="23.0" minHeight="23.0" minWidth="23.0" mnemonicParsing="false" onMouseClicked="#exitClicked" onMouseEntered="#exitHovered" onMouseExited="#exitUnHovered" onMousePressed="#exitPressed" onMouseReleased="#exitReleased" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: linear-gradient(#e8c7c7,#e5a7a7); -fx-background-insets: 4; -fx-background-radius: 30; -fx-text-fill: White;" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+        <Button fx:id="exit" alignment="CENTER" focusTraversable="false" maxHeight="23.0" maxWidth="23.0" minHeight="23.0" minWidth="23.0" mnemonicParsing="false" onMouseClicked="#exitClicked" onMouseEntered="#exitHovered" onMouseExited="#exitUnHovered" onMousePressed="#exitPressed" onMouseReleased="#exitReleased" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: linear-gradient(#e8c7c7,#e5a7a7); -fx-background-insets: 4; -fx-background-radius: 30; -fx-text-fill: White;" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
@@ -58,7 +134,7 @@
                 <Insets right="7.0" top="5.0" />
             </GridPane.margin>
         </Button>
-        <Button fx:id="minimize" alignment="CENTER" maxHeight="23.0" maxWidth="23.0" minHeight="23.0" minWidth="23.0" mnemonicParsing="false" onMouseClicked="#minimClicked" onMouseEntered="#minimHovered" onMouseExited="#minimUnHovered" onMousePressed="#minimPressed" onMouseReleased="#minimReleased" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: linear-gradient(#c9edcf, #a7e5b2); -fx-background-insets: 4; -fx-background-radius: 30; -fx-text-fill: White;" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+        <Button fx:id="minimize" alignment="CENTER" focusTraversable="false" maxHeight="23.0" maxWidth="23.0" minHeight="23.0" minWidth="23.0" mnemonicParsing="false" onMouseClicked="#minimClicked" onMouseEntered="#minimHovered" onMouseExited="#minimUnHovered" onMousePressed="#minimPressed" onMouseReleased="#minimReleased" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: linear-gradient(#c9edcf, #a7e5b2); -fx-background-insets: 4; -fx-background-radius: 30; -fx-text-fill: White;" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
@@ -66,7 +142,7 @@
                 <Insets right="29.0" top="5.0" />
             </GridPane.margin>
         </Button>
-        <Button fx:id="info" alignment="CENTER" layoutX="559.0" layoutY="10.0" maxHeight="23.0" maxWidth="23.0" minHeight="23.0" minWidth="23.0" mnemonicParsing="false" onMouseClicked="#infoOpen" onMouseEntered="#infoHovered" onMouseExited="#infoUnHovered" onMousePressed="#infoPressed" onMouseReleased="#infoReleased" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: linear-gradient(#d1e2ff, #adcbff); -fx-background-insets: 4; -fx-background-radius: 30; -fx-text-fill: White;" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+        <Button fx:id="info" alignment="CENTER" focusTraversable="false" layoutX="559.0" layoutY="10.0" maxHeight="23.0" maxWidth="23.0" minHeight="23.0" minWidth="23.0" mnemonicParsing="false" onMouseClicked="#infoOpen" onMouseEntered="#infoHovered" onMouseExited="#infoUnHovered" onMousePressed="#infoPressed" onMouseReleased="#infoReleased" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: linear-gradient(#d1e2ff, #adcbff); -fx-background-insets: 4; -fx-background-radius: 30; -fx-text-fill: White;" GridPane.halignment="LEFT" GridPane.valignment="TOP">
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
@@ -74,81 +150,5 @@
                 <Insets left="7.0" top="5.0" />
             </GridPane.margin>
         </Button>
-        <Button fx:id="rollback" disable="true" maxHeight="36.0" maxWidth="80.0" minHeight="36.0" minWidth="80.0" mnemonicParsing="false" onMouseClicked="#rollbackClicked" prefHeight="36.0" prefWidth="80.0" text="Rollback" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
-            <GridPane.margin>
-                <Insets bottom="20.0" left="165.0" />
-            </GridPane.margin>
-        </Button>
-         <TextField fx:id="pathTextField" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" promptText="Can not be empty" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
-         <GridPane.margin>
-            <Insets left="35.0" right="120.0" />
-         </GridPane.margin>
-      </TextField>
-         <Label text="Path" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
-         <GridPane.margin>
-            <Insets top="-25.0" />
-         </GridPane.margin>
-      </Label>
-      <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onMouseClicked="#fileChooserClicked" opacity="0.78" prefHeight="25.0" prefWidth="25.0" text="..." GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
-         <GridPane.margin>
-            <Insets right="90.0" />
-         </GridPane.margin>
-      </Button>
-        <GridPane prefWidth="529.0" GridPane.rowIndex="1">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" />
-                <ColumnConstraints hgrow="SOMETIMES" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            </rowConstraints>
-            <Button alignment="CENTER" maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" mnemonicParsing="false" onMouseClicked="#invertClicked" prefHeight="15.0" prefWidth="15.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-                <GridPane.margin>
-                    <Insets top="48.0" />
-                </GridPane.margin>
-            </Button>
-            <TextField fx:id="keywordTextField" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" promptText="Can not be empty" GridPane.halignment="LEFT" GridPane.valignment="TOP">
-                <GridPane.margin>
-                    <Insets left="35.0" top="42.0" />
-                </GridPane.margin>
-        </TextField>
-            <TextField fx:id="repKeywordTextField" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" promptText="Leave it empty to delete the keyword" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
-                <GridPane.margin>
-                    <Insets right="35.0" top="42.0" />
-                </GridPane.margin>
-        </TextField>
-            <Label text="Replacement Keyword" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-                <GridPane.margin>
-                    <Insets top="17.0" />
-                </GridPane.margin>
-                <padding>
-                    <Insets right="40.0" />
-                </padding>
-         </Label>
-            <Label text="Target Keyword" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-                <GridPane.margin>
-                    <Insets top="17.0" />
-                </GridPane.margin>
-                <padding>
-                    <Insets left="35.0" />
-                </padding>
-         </Label>
-         <RadioButton fx:id="regexKeyword" mnemonicParsing="false" onMouseClicked="#regexKeywordClicked" text="Regex Keyword" GridPane.valignment="TOP">
-            <GridPane.margin>
-               <Insets left="40.0" top="105.0" />
-            </GridPane.margin>
-         </RadioButton>
-         <RadioButton fx:id="exactKeyword" mnemonicParsing="false" onMouseClicked="#exactKeywordClicked" selected="true" text="Exact Keyword" GridPane.valignment="TOP">
-            <GridPane.margin>
-               <Insets left="40.0" top="80.0" />
-            </GridPane.margin>
-         </RadioButton>
-        </GridPane>
-      <Button maxHeight="25.0" maxWidth="50.0" minHeight="25.0" minWidth="50.0" mnemonicParsing="false" onMouseClicked="#openClicked" prefHeight="25.0" prefWidth="50.0" text="Open" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
-         <GridPane.margin>
-            <Insets right="35.0" />
-         </GridPane.margin>
-      </Button>
     </GridPane>
 </AnchorPane>
