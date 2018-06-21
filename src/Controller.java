@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Objects;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import static javafx.scene.paint.Color.BLACK;
 import static javafx.scene.paint.Color.GREEN;
@@ -40,6 +41,8 @@ public class Controller {
     private static String directory;
     private static String message;
     private static Color messageColor;
+    private static ScheduledExecutorService rollbackService;
+    private static ScheduledExecutorService renameService;
 
     @FXML RadioButton regexKeyword;
     @FXML RadioButton exactKeyword;
@@ -80,7 +83,8 @@ public class Controller {
             exactKeyword.setSelected(!isRegex);
         }
     }
-    
+
+
     public void startClicked() {
         if (Objects.equals(pathTextField.getText(), "") || Objects.equals(keywordTextField.getText(), "")){
             textMessage.setTextFill(RED);
@@ -94,11 +98,11 @@ public class Controller {
             textMessage.setText(message);
 
         }else {
-            Executors.newSingleThreadScheduledExecutor().schedule(this::rename,0,TimeUnit.MILLISECONDS);
+            renameService = Executors.newSingleThreadScheduledExecutor();
+            renameService.schedule(this::rename,0,TimeUnit.MILLISECONDS);
         }
     }
 
-    
     public void rollbackClicked() {
         if (!new File(dirRename.getCurrentPath()).exists()){
             textMessage.setTextFill(RED);
@@ -106,7 +110,8 @@ public class Controller {
             message = "Path not exists.";
             textMessage.setText(message);
         }else{
-            Executors.newSingleThreadScheduledExecutor().schedule(this::rollback,0,TimeUnit.MILLISECONDS);
+            rollbackService = Executors.newSingleThreadScheduledExecutor();
+            rollbackService.schedule(this::rollback,0,TimeUnit.MILLISECONDS);
         }
     }
 
@@ -117,14 +122,12 @@ public class Controller {
         } catch (IOException ignored) {}
     }
 
-    
     public void googlePlusClicked() {
         try {
             Desktop.getDesktop().browse(URI.create("http://google.com/+MatinAfkhami"));
         } catch (IOException ignored) {}
     }
 
-    
     public void githubClicked() {
         try {
             Desktop.getDesktop().browse(URI.create("https://github.com/Matin-A"));
@@ -145,7 +148,6 @@ public class Controller {
         Main.primaryStage.setScene(new Scene(root, 520, 350));
     }
 
-    
     public void infoClose() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("view/mainForm.fxml"));
         root.setOnMousePressed(e -> {
@@ -159,7 +161,6 @@ public class Controller {
         Main.primaryStage.setScene(new Scene(root,520 ,350));
     }
 
-    
     public void minimClicked() {
         Stage stage = (Stage) minimize.getScene().getWindow();
         stage.setIconified(true);
@@ -184,19 +185,36 @@ public class Controller {
 
     
     public void openClicked() {
-        if (!new File(pathTextField.getText()).exists()) {
-            textMessage.setTextFill(RED);
-            messageColor = RED;
-            message = "Path not exists.";
-            textMessage.setText(message);
-        }else {
-            try {
-                Desktop.getDesktop().open(new File(pathTextField.getText()));
-            } catch (IOException ignored) {}
+        if (pathTextField.getText()!=null){
+            if (!new File(pathTextField.getText()).exists()) {
+                textMessage.setTextFill(RED);
+                messageColor = RED;
+                message = "Path not exists.";
+                textMessage.setText(message);
+            }else {
+                try {
+                    Desktop.getDesktop().open(new File(pathTextField.getText()));
+                } catch (IOException ignored) {}
+            }
         }
     }
 
-    
+
+    public void exactKeywordClicked() {
+        isRegex = false;
+        exactKeyword.setFocusTraversable(false);
+        regexKeyword.setSelected(false);
+        regexKeyword.setFocusTraversable(true);
+    }
+
+    public void regexKeywordClicked() {
+        isRegex = true;
+        regexKeyword.setFocusTraversable(false);
+        exactKeyword.setSelected(false);
+        exactKeyword.setFocusTraversable(true);
+    }
+
+
     public void exitClicked() throws IOException {
         if (inTask || !rollbackIsDisable){
             Parent root = FXMLLoader.load(getClass().getResource("view/exitForm.fxml"));
@@ -230,26 +248,12 @@ public class Controller {
         stage.close();
     }
 
-    
-    public void regexKeywordClicked() {
-        isRegex = true;
-        exactKeyword.setSelected(false);
-    }
-
-    
-    public void exactKeywordClicked() {
-        isRegex = false;
-        regexKeyword.setSelected(false);
-    }
-
-    
     public void infoHovered() {
         info.setStyle("-fx-background-color:  linear-gradient(#77aaff, #478cff);" +
                 "-fx-background-insets: 4; " +
                 "-fx-background-radius: 30; " +
                 "-fx-text-fill:  White");
     }
-
     
     public void infoUnHovered() {
         info.setStyle("-fx-background-color:  linear-gradient(#d1e2ff, #adcbff);" +
@@ -258,14 +262,12 @@ public class Controller {
                 "-fx-text-fill:  White");
     }
 
-    
     public void infoPressed() {
         info.setStyle("-fx-background-color:  linear-gradient(#478cff, #116aff);" +
                 "-fx-background-insets: 4; " +
                 "-fx-background-radius: 30; " +
                 "-fx-text-fill:  White");
     }
-
     
     public void infoReleased() {
         info.setStyle("-fx-background-color:  linear-gradient(#d1e2ff, #adcbff);" +
@@ -274,7 +276,6 @@ public class Controller {
                 "-fx-text-fill:  White");
     }
 
-    
     public void exitPressed() {
         exit.setStyle("-fx-background-color:  linear-gradient(#dd3838,#e01f1f);" +
                 "-fx-background-insets: 4; " +
@@ -282,7 +283,6 @@ public class Controller {
                 "-fx-text-fill:  White");
     }
 
-    
     public void exitReleased() {
         exit.setStyle("-fx-background-color:  linear-gradient(#e06464,#e05555);" +
                 "-fx-background-insets: 4; " +
@@ -290,7 +290,6 @@ public class Controller {
                 "-fx-text-fill:  White");
     }
 
-    
     public void exitHovered() {
         exit.setStyle("-fx-background-color:  linear-gradient(#e06464,#e05555);" +
                 "-fx-background-insets: 4; " +
@@ -298,7 +297,6 @@ public class Controller {
                 "-fx-text-fill:  White");
     }
 
-    
     public void exitUnHovered() {
         exit.setStyle("-fx-background-color:  linear-gradient(#e8c7c7,#e5a7a7);" +
                 "-fx-background-insets: 4; " +
@@ -306,7 +304,6 @@ public class Controller {
                 "-fx-text-fill:  White");
     }
 
-    
     public void minimPressed() {
         minimize.setStyle("-fx-background-color:  linear-gradient(#0fd830,#00d122);" +
                 "-fx-background-insets: 4; " +
@@ -314,14 +311,12 @@ public class Controller {
                 "-fx-text-fill:  White");
     }
 
-    
     public void minimReleased() {
         minimize.setStyle("-fx-background-color:  linear-gradient(#c9edcf, #a7e5b2);" +
                 "-fx-background-insets: 4; " +
                 "-fx-background-radius: 30; " +
                 "-fx-text-fill:  White");
     }
-
     
     public void minimHovered() {
         minimize.setStyle("-fx-background-color:  linear-gradient(#55e087, #2fe070);" +
@@ -330,7 +325,6 @@ public class Controller {
                 "-fx-text-fill:  White");
     }
 
-    
     public void minimUnHovered() {
         minimize.setStyle("-fx-background-color:  linear-gradient(#c9edcf, #a7e5b2);" +
                 "-fx-background-insets: 4; " +
@@ -375,6 +369,7 @@ public class Controller {
         start.setDisable(false);
         startIsDisable = false;
         inTask = false;
+        renameService.shutdown();
     }
 
     private void rollback() {
@@ -398,5 +393,6 @@ public class Controller {
             message = "Something went wrong.\n Rollback unsuccessful.";
         }
         inTask = false;
+        rollbackService.shutdown();
     }
 }
