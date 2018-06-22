@@ -15,7 +15,6 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
-import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -57,28 +56,15 @@ public class Controller {
     @FXML Button cancel;
     @FXML Button minimize;
 
-    
+
     public void initialize(){
         if (keywordTextField!=null){
             keywordTextField.setText(keyword);
-        }
-        if (repKeywordTextField!=null){
             repKeywordTextField.setText(repKeyword);
-        }
-        if (pathTextField!=null){
             pathTextField.setText(directory);
-        }
-        if (rollback!=null){
             rollback.setDisable(rollbackIsDisable);
-        }
-        if (start!=null){
-            start.setDisable(startIsDisable);
-        }
-        if (textMessage!=null){
-            textMessage.setText(message);
+            start.setDisable(startIsDisable);textMessage.setText(message);
             textMessage.setTextFill(messageColor);
-        }
-        if (regexKeyword!=null){
             regexKeyword.setSelected(isRegex);
             exactKeyword.setSelected(!isRegex);
         }
@@ -86,7 +72,7 @@ public class Controller {
 
 
     public void startClicked() {
-        if (Objects.equals(pathTextField.getText(), "") || Objects.equals(keywordTextField.getText(), "")){
+        if (pathTextField.getText()==null || keywordTextField.getText()==null){
             textMessage.setTextFill(RED);
             messageColor = RED;
             message = "Keyword or Path couldn't be empty.";
@@ -115,7 +101,7 @@ public class Controller {
         }
     }
 
-    
+
     public void telegramClicked() {
         try {
             Desktop.getDesktop().browse(URI.create("https://t.me/MatinAfkhami"));
@@ -134,7 +120,7 @@ public class Controller {
         } catch (IOException ignored) {}
     }
 
-    
+
     public void infoOpen() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/infoForm.fxml"));
         root.setOnMousePressed(e -> {
@@ -166,14 +152,14 @@ public class Controller {
         stage.setIconified(true);
     }
 
-    
+
     public void invertClicked() {
         String key = keywordTextField.getText();
         keywordTextField.setText(repKeywordTextField.getText());
         repKeywordTextField.setText(key);
     }
 
-    
+
     public void fileChooserClicked() {
         DirectoryChooser chooser = new DirectoryChooser();
         chooser.setTitle("Choose Directory");
@@ -183,7 +169,7 @@ public class Controller {
         }
     }
 
-    
+
     public void openClicked() {
         if (pathTextField.getText()!=null){
             if (!new File(pathTextField.getText()).exists()) {
@@ -237,12 +223,12 @@ public class Controller {
         }
     }
 
-    
+
     public void confirmExitClicked() {
         Platform.exit();
     }
 
-    
+
     public void cancelClicked() {
         Stage stage = (Stage) cancel.getScene().getWindow();
         stage.close();
@@ -254,7 +240,7 @@ public class Controller {
                 "-fx-background-radius: 30; " +
                 "-fx-text-fill:  White");
     }
-    
+
     public void infoUnHovered() {
         info.setStyle("-fx-background-color:  linear-gradient(#d1e2ff, #adcbff);" +
                 "-fx-background-insets: 4; " +
@@ -268,7 +254,7 @@ public class Controller {
                 "-fx-background-radius: 30; " +
                 "-fx-text-fill:  White");
     }
-    
+
     public void infoReleased() {
         info.setStyle("-fx-background-color:  linear-gradient(#d1e2ff, #adcbff);" +
                 "-fx-background-insets: 4; " +
@@ -317,7 +303,7 @@ public class Controller {
                 "-fx-background-radius: 30; " +
                 "-fx-text-fill:  White");
     }
-    
+
     public void minimHovered() {
         minimize.setStyle("-fx-background-color:  linear-gradient(#55e087, #2fe070);" +
                 "-fx-background-insets: 4; " +
