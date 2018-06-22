@@ -20,7 +20,7 @@ Simply copy and run `Name Find & Replace.jar` File. You need JRE pre-installed.
 ## How to use the program
 Here is a simple example: I enter "example" as the keyword, "" (empty) as the replacement keyword, and "PATH/Directory" as the path, then run the program:
 
-![Example](https://github.com/Matin-A/Name-Find-Replace/blob/v1.0.1-releases-archived/Assests/Example.jpg)
+![Example](https://github.com/Matin-A/Name-Find-Replace/blob/v1.0.1-releases-archived/Example.jpg)
 
 
 ## How to use Regex Keyword
@@ -29,4 +29,4 @@ Regex (Regular Expressions) is a word (sequence of characters) which is a patter
 Regex Keyword must follow Java Regex Rules. [Here](https://docs.google.com/document/d/1CDhy9E-SLz_CeW5VSJ-uM63UPCEj2O3hQUsicKNE178/edit?usp=sharing) is a short summary of rules.
 
 # Screenshot
-![screenshot](https://github.com/Matin-A/Name-Find-Replace/blob/v1.0.1-releases-archived/Assests/NameFindReplaceScreenshot.jpg)
+![screenshot](https://github.com/Matin-A/Name-Find-Replace/blob/v1.0.1-releases-archived/NameFindReplaceScreenshot.jpg)
