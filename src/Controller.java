@@ -189,6 +189,7 @@ public class Controller {
     public void exactKeywordClicked() {
         isRegex = false;
         exactKeyword.setFocusTraversable(false);
+        exactKeyword.setSelected(true);
         regexKeyword.setSelected(false);
         regexKeyword.setFocusTraversable(true);
     }
@@ -196,6 +197,7 @@ public class Controller {
     public void regexKeywordClicked() {
         isRegex = true;
         regexKeyword.setFocusTraversable(false);
+        regexKeyword.setSelected(true);
         exactKeyword.setSelected(false);
         exactKeyword.setFocusTraversable(true);
     }
