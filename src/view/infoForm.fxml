@@ -59,7 +59,7 @@
             </GridPane.margin>
             <Image url="@../resources/rename.png" />
         </ImageView>
-      <Label text="v1.0.2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+      <Label text="v1.0.3" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="-10.0" />
          </GridPane.margin>
