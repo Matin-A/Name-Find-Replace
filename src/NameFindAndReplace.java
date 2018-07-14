@@ -15,10 +15,12 @@ class NameFindAndReplace {
     private boolean isRegex;
 
     NameFindAndReplace(File file, String targetKeyword, String replacementKeyword, boolean isRegex) throws Exception {
-        if (file==null || targetKeyword==null || replacementKeyword==null)
+        if (file==null || targetKeyword==null)
             throw new Exception("Inputs must not be null.");
         if (!file.exists())
             throw new Exception("File or directory not exists.");
+        if (replacementKeyword == null)
+            replacementKeyword = "";
         this.file = file;
         this.targetKeyword = targetKeyword;
         this.replacementKeyword = replacementKeyword;
@@ -85,8 +87,8 @@ class NameFindAndReplace {
     private void conditionalRenameKeyword() {
         if (dir.getName().contains(targetKeyword)){
             this.newDir = dir.getParent() + "/" + dir.getName().replace(targetKeyword,replacementKeyword);
-            int suff = getSuff(this.dir,this.newDir);
-            conditionalRenameBoth(suff);
+            int suffix = getSuffix(this.dir,this.newDir);
+            conditionalRenameBoth(suffix);
             if (dir.renameTo(new File(this.newDir))) {
                 fileIndex++;
                 log[fileIndex][0] = this.dir.toString();
@@ -100,8 +102,8 @@ class NameFindAndReplace {
     private void conditionalRenameRegex() {
         if (stringContainsRegex(dir.getName(),targetKeyword)){
             this.newDir = dir.getParent() + "/" + dir.getName().replaceAll(targetKeyword, replacementKeyword);
-            int suff = getSuff(this.dir,this.newDir);
-            conditionalRenameBoth(suff);
+            int suffix = getSuffix(this.dir,this.newDir);
+            conditionalRenameBoth(suffix);
             if (dir.renameTo(new File(this.newDir))) {
                 fileIndex++;
                 log[fileIndex][0] = this.dir.toString();
@@ -112,18 +114,18 @@ class NameFindAndReplace {
         }
     }
 
-    private void conditionalRenameBoth(int suff) {
-        if (suff!=0) {
+    private void conditionalRenameBoth(int suffix) {
+        if (suffix!=0) {
             if (this.dir.isDirectory())
-                this.newDir = this.newDir + "(" + suff + ")";
+                this.newDir = this.newDir + "(" + suffix + ")";
             else{
                 String newDirName = new File(this.newDir).getName();
                 if (newDirName.contains(".")){
                     String newDirParent = new File(this.newDir).getParent();
                     this.newDir = newDirParent + "/" + newDirName.substring(0,newDirName.lastIndexOf('.')) +
-                            "(" + suff + ")" + newDirName.substring(newDirName.lastIndexOf('.'));
+                            "(" + suffix + ")" + newDirName.substring(newDirName.lastIndexOf('.'));
                 }else{
-                    this.newDir = this.newDir + "(" + suff + ")";
+                    this.newDir = this.newDir + "(" + suffix + ")";
                 }
             }
         }
@@ -199,28 +201,28 @@ class NameFindAndReplace {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    static private int getSuff(File dir, String newDir) {
-        int suff = 0;
+    static private int getSuffix(File dir, String newDir) {
+        int suffix = 0;
         StringBuilder newDirTemp = new StringBuilder(newDir);
         while ( fileArrayContains(Objects.requireNonNull(dir.getParentFile().listFiles()),new File(newDirTemp.toString())) ) {
-            suff++;
+            suffix++;
             newDirTemp = new StringBuilder(newDir);
             if (dir.isDirectory())
-                newDirTemp.append("(").append(suff).append(")");
+                newDirTemp.append("(").append(suffix).append(")");
             else{
                 String newDirName = new File(newDir).getName();
                 if (newDirName.contains(".")){
                     String newDirParent = new File(newDir).getParent();
                     newDirTemp.append(newDirParent).append("/")
                             .append(newDirName, 0, newDirName.lastIndexOf('.'))
-                            .append("(").append(suff).append(")")
+                            .append("(").append(suffix).append(")")
                             .append(newDirName.substring(newDirName.lastIndexOf('.')));
                 }else{
-                    newDirTemp.append(newDirTemp).append("(").append(suff).append(")");
+                    newDirTemp.append(newDirTemp).append("(").append(suffix).append(")");
                 }
             }
         }
-        return suff;
+        return suffix;
     }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
