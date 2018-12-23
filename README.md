@@ -30,3 +30,6 @@ Regex Keyword must follow Java Regex Rules. [Here](https://docs.google.com/docum
 
 # Screenshot
 ![screenshot](https://github.com/Matin-A/Name-Find-Replace/blob/v1.0.2-releases-archived/NameFindReplaceScreenshot.jpg)
+
+# Notice
+Since Java-FX removed from new Java, you need to run command-line app (Console Version).
